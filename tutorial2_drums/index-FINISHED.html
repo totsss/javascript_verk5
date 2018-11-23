@@ -58,10 +58,13 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  // fyrir ofan hofum við klassana keys sem er fyrir hvern takk  sem er ýtt á 
+  // og ´hvaða hljóð á að koma fram þegar þeim er smellt niður.
   function removeTransition(e) {
     if (e.propertyName !== 'transform') return;
     e.target.classList.remove('playing');
   }
+  // function sem segir tonlistinni hætta að spila þegar klassi er ekki í 'transform', og þá verður hann/klassinn ekki lengur 'playing'
 
   function playSound(e) {
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
@@ -71,12 +74,14 @@
     audio.currentTime = 0;
     audio.play();
   }
-
+  //hérna er verið að bæta við audio í klassan (playing) 
+ 
   const keys = Array.from(document.querySelectorAll('.key'));
-
+// sækja keys
   keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 
   window.addEventListener('keydown', playSound);
+  // þegar það er ýtt á takkan þá spilast tónlistinn.
 </script>
 
 
